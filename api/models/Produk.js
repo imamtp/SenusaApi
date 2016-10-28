@@ -9,10 +9,9 @@ module.exports = {
 	attributes: {
 		name: { type: 'string', required:true},
 		desc: { type: 'string' },
-		retail_price: { type: 'integer' },
-		kilos_price: { type: 'integer' },
-		url_photo: { type: 'string' },
-		date_time: { type: 'string' },
+		retail_price: { type: 'integer', defaultsTo:0},
+		kilos_price: { type: 'integer', defaultsTo:0 },
+		url_photo: { type: 'string', defaultsTo:'no_photo.jpg'},
 		owner:{ model: 'user'},
 		category: { model: 'kategoriproduk' }
 	},
