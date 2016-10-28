@@ -6,6 +6,9 @@
  */
 
 module.exports = {
+ tesenv: function (req, res) {
+	 res.send('200',{db_host:process.env.DB_HOST, db_name:process.env.DB_NAME, db_pass:process.env.DB_PASS, db_user:process.env.DB_USER});
+ },
  login: function (req, res) {
 	 User.findOne({ phone: req.param('phone'), password: req.param('password') })
 			.then(function(user) {
