@@ -139,9 +139,6 @@ var InfoHargaKKPController = {
 			})
 		}
 	},
-	updateinfoharga: function(req, res){
-
-	},
 	requestinfoharga: function(req, res){
 		var request = require('request'),
 			url = 'http://www.wpi.kkp.go.id/info_harga_ikan/server.php',
