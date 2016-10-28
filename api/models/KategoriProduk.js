@@ -6,16 +6,15 @@
  */
 
 module.exports = {
-
-  attributes: {
-     name: { type: 'string' },
-     kode: { type: 'string' }
-  },
-  addkategori: function (inputs, cb){
-    KategoriProduk.create({
-      name: inputs.name,
-      kode: inputs.kode
-    })
-   .exec(cb);
-  }
+	attributes: {
+		name: { type: 'string', required:true},
+		products: {collection: 'produk', via:'category'}
+	},
+	save: function (inputs, cb){
+		KategoriProduk.create({
+			name: inputs.name
+		})
+		.exec(cb);
+	}
 };
+
