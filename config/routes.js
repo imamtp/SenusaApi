@@ -46,17 +46,17 @@ module.exports.routes = {
 	*                                                                          *
 	***************************************************************************/
 
-	'post /user/register': 'UserController.register',
-	'post /user/login': 'UserController.login',
-	'get /user/showproduk': 'UserController.showproduk',
+	'post /signup': 'UserController.register',
+	'post /login': 'UserController.login',
+	'get /produkbyuser': 'UserController.showproduk',
 
-	'get /kategoriproduk/index': 'KategoriProdukController.index',
-	'get /kategoriproduk/showproduk': 'KategoriProdukController.showproduk',
+	'get /listkategoriproduk': 'KategoriProdukController.index',
+	'get /produkbykategori': 'KategoriProdukController.showproduk',
 	
-	'get /produk/index': 'ProdukController.index',
-	'get /produk/detail': 'ProdukController.detail',
-	'get /produk/find': 'ProdukController.find',
-	'post /produk/save': 'ProdukController.create',
+	'get /listproduk': 'ProdukController.index',
+	'get /detailproduk': 'ProdukController.detail',
+	'get /findproduk': 'ProdukController.find',
+	'post /saveproduk': 'ProdukController.create',
 
 	'post /initprov':'ProvinsiController.initprov',
 	'post /initkab':'KabupatenController.initkab',
