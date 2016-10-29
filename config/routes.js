@@ -58,6 +58,7 @@ module.exports.routes = {
 	'get /findproduk': 'ProdukController.find',
 	'post /saveproduk': 'ProdukController.create',
 	'post /updateproduk': 'ProdukController.update',
+	'post /deleteproduk': 'ProdukController.remove',
 	
 	'post /initprov':'ProvinsiController.initprov',
 	'post /initkab':'KabupatenController.initkab',
