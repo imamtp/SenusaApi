@@ -5,7 +5,6 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-var Q = require('q')
 module.exports = {
 	index: function(req, res){
 		Produk.find()
@@ -56,15 +55,42 @@ module.exports = {
 			else return res.json('200', {success:true, produk});
 		});
 	},
+	update: function(req, res){
+		moment = require('moment')
+		Produk.update(
+			{id: req.param('id')},
+			{
+				name: req.param('name'),
+				desc: req.param('desc'),
+				retail_price: req.param('retail_price'),
+				kilos_price: req.param('kilos_price'),
+				url_photo: req.param('url_photo'),
+				category: req.param('category'),
+				owner: req.param('owner'),
+				updatedAt: moment(new Date()).format('YYYY-MM-DD H:m:s')
+			}
+		).exec(function(err, produk){
+			if(err && err.code === 'E_VALIDATION'){
+				return res.badRequest(err)
+			}
+
+			if(err){
+				return res.json('500', {success:false, message:err.message} )
+			}
+
+			else return res.json('200', {success:true, produk})
+
+		})
+	},
 	save: function(req, res){
 		Produk.save({
-			name : req.param('name'),
-			desc : req.param('desc'),
-			retail_price : req.param('retail_price'),
-			kilos_price : req.param('kilos_price'),
-			url_photo : req.param('url_photo'),
-			category : req.param('category'),
-			owner : req.param('owner')
+			name: req.param('name'),
+			desc: req.param('desc'),
+			retail_price: req.param('retail_price'),
+			kilos_price: req.param('kilos_price'),
+			url_photo: req.param('url_photo'),
+			category: req.param('category'),
+			owner: req.param('owner')
 		},
 		function(err, produk){
 			if(err && err.code ==='E_VALIDATION'){
