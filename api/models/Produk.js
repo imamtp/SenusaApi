@@ -1,5 +1,5 @@
 /**d
- * Product.js
+ * Produk.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs		:: http://sailsjs.org/documentation/concepts/models-and-orm/models
@@ -15,6 +15,11 @@ module.exports = {
 		owner:{ model: 'user'},
 		category: { model: 'kategoriproduk' }
 	},
+	validationMessages: {
+		name: {
+			required: 'Nama tidak boleh kosong'
+		}
+	},
 	save: function (inputs, cb) {
 		Produk.create({
 			name: inputs.name,
@@ -25,7 +30,8 @@ module.exports = {
 			date_time: inputs.date_time,
 			category: inputs.category,
 			owner: inputs.owner
-		}).exec(cb);
+		})
+		.exec(cb);
 	}
 };
 

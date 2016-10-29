@@ -14,14 +14,26 @@ module.exports = {
 		email: { type:'string' },
 		products: {collection: 'produk', via:'owner'}
 	},
+	validationMessages: {
+		name: {
+			required: 'Nama tidak boleh kosong'
+		},
+		phone: {
+			required: 'No HP tidak boleh kosong',
+			unique: 'No HP sudah terdaftar'
+		},
+		password: {
+			required: 'Password tidak boleh kosong'
+		}
+	},
 	signup: function (inputs, cb) {
-	User.create({
-		name: inputs.name,
-		phone: inputs.phone,
-		password: inputs.password,
-		address: inputs.address,
-		email: inputs.email
-	})
-	.exec(cb);
+		User.create({
+			name: inputs.name,
+			phone: inputs.phone,
+			password: inputs.password,
+			address: inputs.address,
+			email: inputs.email
+		})
+		.exec(cb);
 	}
 };
