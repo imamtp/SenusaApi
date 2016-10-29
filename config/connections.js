@@ -42,11 +42,13 @@ module.exports.connections = {
   ***************************************************************************/
   someMysqlServer: {
     adapter: 'sails-mysql',
-    host: process.env.DB_HOST,
+    host: 'localhost',
     port: 3306,
-    user: process.env.DB_USER, //optional
-    password: process.env.DB_PASSWORD, //optional
-    database: process.env.DB_NAME //optional
+    user: 'root', //optional
+    password: '', //optional
+    // database: 'heroku_2.0.1' //optional
+    database:'heroku_2.1',
+    timezone:'utc+7'
   },
 
   /***************************************************************************
