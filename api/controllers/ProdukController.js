@@ -69,7 +69,7 @@ module.exports = {
 				owner: req.param('owner'),
 				updatedAt: moment(new Date()).format('YYYY-MM-DD H:m:s')
 			}
-		).exec(function(err, produk){
+		).exec(function (err, updated){
 			if(err && err.code === 'E_VALIDATION'){
 				return res.badRequest(err)
 			}
@@ -78,12 +78,21 @@ module.exports = {
 				return res.json('500', {success:false, message:err.message} )
 			}
 
-			if(produk.length == 0){
+			if(updated.length == 0){
 				return res.json('400', {success:false, message:'Id Produk tidak terdaftar'})
 			}
 
-			else return res.json('200', {success:true, produk})
+			else return res.json('200', {success:true, updated})
 
+		})
+	},
+	remove: function(req, res){
+		Produk.destroy({id: req.param('id')})
+		.exec(function(err){
+			if(err){
+				return res.json('500', {success:false, message:err.message})
+			}
+			else return res.json('200', {success:true, message:'Produk berhasil dihapus'})
 		})
 	},
 	save: function(req, res){
