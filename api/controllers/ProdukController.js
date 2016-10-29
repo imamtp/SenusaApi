@@ -78,6 +78,10 @@ module.exports = {
 				return res.json('500', {success:false, message:err.message} )
 			}
 
+			if(produk.length == 0){
+				return res.json('400', {success:false, message:'Id Produk tidak terdaftar'})
+			}
+
 			else return res.json('200', {success:true, produk})
 
 		})
