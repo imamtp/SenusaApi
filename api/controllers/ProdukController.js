@@ -12,10 +12,11 @@ module.exports = {
 		.skip(req.param('start'))
 		.limit(req.param('length'))
 		.then(function (produk){
-			if(produk === undefined)
-				return res.json('500', {success:false, message:'Data produk kosong'})
+			if(produk === undefined){
+				return res.json('500', {success:false, message:err.message})
+			}
 			
-			res.json('200', {success:false, produk})
+			else return res.json('200', {success:true, produk})
 		})
 	},
 	detail: function(req, res){
@@ -23,10 +24,11 @@ module.exports = {
 		.populate('owner')
 		.populate('category')
 		.then(function(produk){
-			if(produk === undefined)
+			if(produk === undefined){
 				return res.json('500', {success:false, message:'Produk tidak ditemukan'})
+			}
 			
-			res.json('200', {
+			else return res.json('200', {
 				success:true, 
 				name:produk.name,
 				desc:produk.desc,
