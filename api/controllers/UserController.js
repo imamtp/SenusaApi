@@ -13,10 +13,11 @@ module.exports = {
 		})
 		.then(function(user){
 			if(user===undefined){
-				res.json('500',{success:false, message: 'Nomor HP/Password salah'});
-			}else{
-				res.json('200', {success:true, name:user.name, phone:user.phone, address:user.address, email:user.email, id:user.id});
+				return res.json('500',{success:false, message: 'Nomor HP/Password salah'});
 			}
+			
+			else return res.json('200', {success:true, name:user.name, phone:user.phone, address:user.address, email:user.email, id:user.id});
+			
 		});
 	},
 	register: function (req, res) {
@@ -26,11 +27,16 @@ module.exports = {
 			password: req.param('password')
 		}, 
 		function (err, user) {
-			if (err){
-				res.json('500',{success:false, message:err.message});
-			}else{
-				res.json('200', {success:true, message:'Registrasi berhasil'});
+			if (err && err.code === 'E_VALIDATION'){
+				return res.badRequest(err)//res.json('500',{success:false, message:err.message});
 			}
+
+			if (err){
+				return res.json('500', {success:false, message:err.message})
+			}
+
+			else return res.json('201', {success:true, message:'Registrasi berhasil'});
+			
 		});
 	},
 	showproduk: function(req, res){
@@ -42,17 +48,21 @@ module.exports = {
  		})
  		.exec(function(err, user){
  			if(err){
- 				res.json('500', {success:false, message:err.message})
- 			}else{
- 				res.json('200', {
- 					success:true,
- 					name:user.name,
- 					phone:user.phone,
- 					email:user.email,
- 					address:user.address,
- 					products:user.products
- 				})
+ 				return res.json('500', {success:false, message:err.message})
  			}
+
+			if(user === undefined){
+				return res.json('500', {success:false, message:'Id User tidak terdaftar!'})
+			}
+			
+			else return res.json('200', {
+				success:true,
+				name:user.name,
+				phone:user.phone,
+				email:user.email,
+				address:user.address,
+				products:user.products
+			})
  		})
  	}
 };
