@@ -7,10 +7,31 @@
 
 module.exports = {
 	index: function(req, res){
-		Produk.find()
-		.sort('createdAt DESC')
-		.skip(req.param('start'))
-		.limit(req.param('length'))
+		name = ''
+		sort = 'createdAt'
+		direction = 'DESC'
+		start = 0
+		length = 10
+
+		if(req.param('name')) name = req.param('name');
+
+		if(req.param('sort')) sort = req.param('sort');
+
+		if(req.param('direction')) direction = req.param('direction');
+
+		if(req.param('start')) start = req.param('start');
+
+		if(req.param('length')) length = req.param('length');
+
+
+		Produk.find({
+			where: {
+				name: {'like': '%'+name+'%'}
+			},
+			sort: sort +' '+direction,
+			skip: start,
+			limit: length
+		})
 		.then(function (produk){
 			if(produk === undefined){
 				return res.json('500', {success:false, message:err.message})
@@ -46,16 +67,6 @@ module.exports = {
 				category:produk.category.name
 			})
 		})
-	},
-	find: function(req, res){
-		Product.find({name:{'like': '%'+req.param('name')+'%'}})
-		.then(function(produk) {
-			if(produk === undefined){
-				return res.json('500',{success:false, message: 'Produk tidak ditemukan'});
-			}
-			
-			else return res.json('200', {success:true, produk});
-		});
 	},
 	update: function(req, res){
 		moment = require('moment')
