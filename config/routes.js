@@ -55,7 +55,6 @@ module.exports.routes = {
 	
 	'get /listproduk': 'ProdukController.index',
 	'get /detailproduk': 'ProdukController.detail',
-	'get /findproduk': 'ProdukController.find',
 	'post /saveproduk': 'ProdukController.create',
 	'post /updateproduk': 'ProdukController.update',
 	'post /deleteproduk': 'ProdukController.remove',
