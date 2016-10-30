@@ -18,11 +18,30 @@ module.exports = {
 		})
 	},
 	showproduk: function(req, res){
+		name = ''
+		sort = 'createdAt'
+		direction = 'DESC'
+		start = 0
+		length = 10
+
+		if(req.param('name')) name = req.param('name');
+
+		if(req.param('sort')) sort = req.param('sort');
+
+		if(req.param('direction')) direction = req.param('direction');
+
+		if(req.param('start')) start = req.param('start');
+
+		if(req.param('length')) length = req.param('length');
+
 		KategoriProduk.findOne({id:req.param('id')})
 		.populate('products', {
-			sort:'createdAt DESC',
-			skip:req.param('start'),
-			limit:req.param('length')
+ 			where: {
+ 				name: {'like': '%'+name+'%'}
+ 			},
+ 			sort: sort +' '+direction, 
+ 			skip: start, 
+ 			limit: length
 		})
 		.exec(function(err, kategoriproduk){
 			if(err){
