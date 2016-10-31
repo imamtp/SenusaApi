@@ -83,5 +83,39 @@ module.exports = {
 				products: user.products
 			})
  		})
+ 	},
+ 	update: function(req, res){
+ 		moment = require('moment')
+ 		User.update(
+ 			{id: req.param('id')},
+ 			{
+ 				name: req.param('name'),
+ 				phone: req.param('phone'),
+ 				email: req.param('email'),
+ 				address: req.param('address'),
+ 				password: req.param('password'),
+ 				updatedAt: moment(new Date()).format('YYYY-MM-DD H:m:s')
+ 			}
+ 		).exec(function(err, updated){
+ 			if(err){
+ 				return res.json('500', {success:false, message:err.message})
+ 			}
+
+ 			if(updated.length == 0){
+ 				return res.json('400', {success:false, message:'User tidak terdaftar'})
+ 			}
+
+ 			else return res.json('200', {success:true, updated})
+ 		})
+ 	},
+ 	remove: function(req, res){
+ 		User.destroy({id: req.param('id')})
+ 		.exec(function(err){
+ 			if(err){
+ 				return res.json('500', {success:false, message:err.message})
+ 			}
+
+ 			else return res.json('200', {success:true, message:'User berhasi dihapus'})
+ 		})
  	}
 };
