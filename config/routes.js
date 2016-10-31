@@ -49,6 +49,8 @@ module.exports.routes = {
 	'post /signup': 'UserController.register',
 	'post /login': 'UserController.login',
 	'get /produkbyuser': 'UserController.showproduk',
+	'post /updateuser': 'UserController.update',
+	'post /deleteuser': 'UserController.remove',
 
 	'get /listkategoriproduk': 'KategoriProdukController.index',
 	'get /produkbykategori': 'KategoriProdukController.showproduk',
