@@ -48,6 +48,8 @@ module.exports.routes = {
 
   'post /register': 'UserController.register',
   'post /login': 'UserController.login',
+  'post /updateuser': 'UserController.updateuser',
+  'post /deleteuser': 'UserController.deleteuser',
   'post /saveproduct': 'ProductController.saveproduct',
   'post /detailproduct': 'ProductController.detailproduct',
   'get /allproduct': 'ProductController.allproduct',
