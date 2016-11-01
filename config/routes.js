@@ -68,6 +68,8 @@ module.exports.routes = {
   'get /kom': 'KomoditasController.find',
   'get /infoharga' : 'InfoHargaKKPController.find',
   'get /formImage':'Uploadimageapi.formImage',
-  'post /uploadImage':'Uploadimageapi.uploadImage'
+  'post /uploadImage':'Uploadimageapi.uploadImage',
+  'post /increaseonline': 'CounterController.increase',
+  'get /countertoday': 'CounterController.countertoday',
   // 'get /me': UserController.hi'allproduct
 };
