@@ -12,7 +12,8 @@ module.exports = {
 		password: { type:'string', required:true},
 		address: { type:'string' },
 		email: { type:'string' },
-		products: {collection: 'produk', via:'owner'}
+		products: {collection:'produk', via:'owner'},
+		signinlogs: {collection:'logsignin', via:'user'}
 	},
 	validationMessages: {
 		name: {
