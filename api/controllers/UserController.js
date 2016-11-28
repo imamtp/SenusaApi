@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-	login: function (req, res){
+	signin: function (req, res){
 		User.findOne({ 
 			phone: req.param('phone'), 
 			password: req.param('password') 
@@ -14,10 +14,15 @@ module.exports = {
 		.then(function(user){
 			if(user===undefined){
 				return res.json('500',{success:false, message: 'Nomor HP/Password salah'});
+			}else{
+				LogSignin.log({user_id:user.id}, function(err){
+					if(err){
+						return res.json('500', {success:false, message:err.message})
+					}
+					else return res.json('200', {success:true, name:user.name, phone:user.phone, address:user.address, email:user.email, id:user.id})
+				})
 			}
-			
-			else return res.json('200', {success:true, name:user.name, phone:user.phone, address:user.address, email:user.email, id:user.id});
-			
+			// else return res.json('200', {success:true, name:user.name, phone:user.phone, address:user.address, email:user.email, id:user.id});
 		});
 	},
 	register: function (req, res) {
