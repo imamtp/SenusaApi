@@ -47,7 +47,7 @@ module.exports.routes = {
 	***************************************************************************/
 
 	'post /signup': 'UserController.register',
-	'post /login': 'UserController.login',
+	'post /signin': 'UserController.signin',
 	'get /produkbyuser': 'UserController.showproduk',
 	'post /updateuser': 'UserController.update',
 	'post /deleteuser': 'UserController.remove',
@@ -60,6 +60,10 @@ module.exports.routes = {
 	'post /saveproduk': 'ProdukController.create',
 	'post /updateproduk': 'ProdukController.update',
 	'post /deleteproduk': 'ProdukController.remove',
+	
+	'get /onlinetoday': 'LogSigninController.numofonlinetoday',
+	'get /calltoday': 'LogCallController.numofcalltoday',
+	'post /logcall': 'LogCallController.log',
 	
 	'post /initprov':'ProvinsiController.initprov',
 	'post /initkab':'KabupatenController.initkab',
