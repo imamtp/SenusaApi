@@ -32,8 +32,8 @@ var ProvinsiController = {
 		var promises=[];
 		provinsi.forEach(function(prov){
 			promises.push(Provinsi.create({
-				kode_provinsi: prov[0],
-				nama_provinsi: prov[1]
+				id: prov[0],
+				name: prov[1]
 			}));
 		})
 		Q.allSettled(promises)

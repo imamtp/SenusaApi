@@ -46,9 +46,9 @@ var KabupatenController = {
 						var promises_2 = []
 						kabupaten.forEach(function(kab){
 							promises_2.push(Kabupaten.create({
-								kode_kabupaten: kab[0],
-								nama_kabupaten: kab[1],
-								kode_provinsi: kab[2]
+								id: kab[0],
+								name: kab[1],
+								upline: kab[2]
 							}));
 						})
 						Q.all(promises_2)
