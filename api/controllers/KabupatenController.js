@@ -9,13 +9,13 @@ var Q = require('q');
 
 var KabupatenController = {
 	find: function(req, res){
-		kd_prov = req.param('kode_provinsi');
+		prov = req.param('prov');
 		
-		queryKabupaten = Kabupaten.find({kode_provinsi:kd_prov});
-		queryKabupaten.sort('nama_kabupaten ASC');
-		if(kd_prov == 'all' || kd_prov === undefined){
+		queryKabupaten = Kabupaten.find({upline:prov});
+		queryKabupaten.sort('name ASC');
+		if(prov == 'all' || prov === undefined){
 			queryKabupaten = Kabupaten.find()
-			queryKabupaten.sort('kode_provinsi ASC')
+			queryKabupaten.sort('upline ASC')
 		}
 		queryKabupaten.exec(function(err, kab){
 			if(err || kab===undefined){
