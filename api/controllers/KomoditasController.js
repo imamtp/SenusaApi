@@ -8,11 +8,11 @@ var Q = require('q');
 
 module.exports = {
 	find: function(req, res){
-		Komoditas.find().then(function(kom){
-			if(kom==undefined){
-				res.json('500', {success:false, message:'Empty Data!'});
+		Komoditas.find().then(function(komodotias){
+			if(komodotias===undefined){
+				res.json('500', {success:false, message:'Data tidak ditemukan'});
 			}else{
-				res.json('200', {success:true, message:'Get Komoitas Successfully!', results:kom});
+				res.json('200', {success:true, komoditas});
 			}
 		});
 	},
