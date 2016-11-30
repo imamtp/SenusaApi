@@ -19,9 +19,9 @@ var KabupatenController = {
 		}
 		queryKabupaten.exec(function(err, kab){
 			if(err || kab===undefined){
-				res.json('500', {success:false, message:'Data is empty!', errors:err.message});
+				res.json('500', {success:false, message:'Data tidak ditemukan!'});
 			}else{
-				res.json('200', {success:true, message:'Get Kabupaten Successfully!', results:kab});
+				res.json('200', {success:true, kab});
 			}
 		});
 	},

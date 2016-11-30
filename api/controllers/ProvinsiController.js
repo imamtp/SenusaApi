@@ -12,9 +12,9 @@ var ProvinsiController = {
 		queryProvinsi.sort('name ASC');
 		queryProvinsi.then(function(prov){
 			if(prov===undefined){
-				res.json('500', {success:false, message:'Empty Data!'});
+				res.json('500', {success:false, message:'Data tidak ditemukan'});
 			}else{
-				res.json('200', {success:true, message:'Get Provinsi Successfully!', results:prov})
+				res.json('200', {success:true, prov})
 			}
 		});
 	},
