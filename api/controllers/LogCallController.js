@@ -20,7 +20,7 @@ var LogCallController = {
 		return new_date.setDate(new_date.getDate() + num_of_date)
 	},
 	log: function(req, res){
-		LogCall.log({user_id:req.user_id}, function(err){
+		LogCall.log({user_id:req.param('user_id')}, function(err){
 			if(err){
 				return res.json('500', {success:false, message:err.message})
 			}
