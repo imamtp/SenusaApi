@@ -9,10 +9,12 @@ module.exports = {
 
   attributes: {
   	datetime: {type:'datetime', defaultsTo:moment().format('YYYY-MM-DD HH:mm:ss')},
-  	user:{model:'user'}
+  	caller:{model:'user'}
   },
   log: function(inputs, cb){
-  	LogCall.create({user:inputs.user_id})
+  	LogCall.create({
+  		caller:inputs.user_id
+  	})
   	.exec(cb)
   }
 };
