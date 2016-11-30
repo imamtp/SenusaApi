@@ -8,14 +8,12 @@
 module.exports = {
 
   attributes: {
-  	kode_kabupaten	: {type:'integer'},
-  	nama_kabupaten	: {type:'string'},
-  	kode_provinsi	: {type:'integer'}
+  	name: {type:'string', required:true},
+  	upline: {model:'provinsi'}
   },
   save: function(inputs,cb){
   	Kabupaten.create({
-  		kode_kabupaten: inputs.kode_kabupaten,
-  		nama_kabupaten: inputs.nama_kabupaten,
+  		name: inputs.name,
   		kode_provinsi: inputs.kode_provinsi
   	})
   	.exec(cb);

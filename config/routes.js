@@ -22,52 +22,57 @@
 
 module.exports.routes = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
+	/***************************************************************************
+	*                                                                          *
+	* Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
+	* etc. depending on your default view engine) your home page.              *
+	*                                                                          *
+	* (Alternatively, remove this and add an `index.html` file in your         *
+	* `assets` directory)                                                      *
+	*                                                                          *
+	***************************************************************************/
 
-  '/': {
-    view: 'hello'
-  },
+	'/': {
+		view: 'hello'
+	},
 
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+	/***************************************************************************
+	*                                                                          *
+	* Custom routes here...                                                    *
+	*                                                                          *
+	* If a request to a URL doesn't match any of the custom routes above, it   *
+	* is matched against Sails route blueprints. See `config/blueprints.js`    *
+	* for configuration options and examples.                                  *
+	*                                                                          *
+	***************************************************************************/
 
-  'post /register': 'UserController.register',
-  'post /login': 'UserController.login',
-  'post /saveproduct': 'ProductController.saveproduct',
-  'post /detailproduct': 'ProductController.detailproduct',
-  'get /allproduct': 'ProductController.allproduct',
-  'get /findproductbyjudul':'ProductController.findproductbyjudul',
-  'get /findproductbyphone':'ProductController.findproductbyphone',
-  'get /semuaproduct':'ProductController.semuaproduct',
-  'post /updateproduct': 'ProductController.updateproduct',
-  'post /deleteproduct':'ProductController.deleteproduct',
-  'post /addkategori': 'KategoriProdukController.savekategori',
-  'post /addkeranjang': 'KeranjangController.simpan',
-  'post /getuser': 'UserController.getuser',
-  'post /initprov':'ProvinsiController.initprov',
-  'post /initkab':'KabupatenController.initkab',
-  'post /initkom':'KomoditasController.initkom',
-  'get /initinfoharga':'InfoHargaKKPController.initinfohargakkp',
-  'get /prov': 'ProvinsiController.find',
-  'get /kab': 'KabupatenController.find',
-  'get /kom': 'KomoditasController.find',
-  'get /infoharga' : 'InfoHargaKKPController.find',
-  'get /formImage':'Uploadimageapi.formImage',
-  'post /uploadImage':'Uploadimageapi.uploadImage'
-  // 'get /me': UserController.hi'allproduct
+	'post /signup': 'UserController.register',
+	'post /signin': 'UserController.signin',
+	'get /produkbyuser': 'UserController.showproduk',
+	'post /updateuser': 'UserController.update',
+	'post /deleteuser': 'UserController.remove',
+
+	'get /listkategoriproduk': 'KategoriProdukController.index',
+	'get /produkbykategori': 'KategoriProdukController.showproduk',
+	
+	'get /listproduk': 'ProdukController.index',
+	'get /detailproduk': 'ProdukController.detail',
+	'post /saveproduk': 'ProdukController.create',
+	'post /updateproduk': 'ProdukController.update',
+	'post /deleteproduk': 'ProdukController.remove',
+	
+	'get /onlinetoday': 'LogSigninController.numofonlinetoday',
+	'get /calltoday': 'LogCallController.numofcalltoday',
+	'post /logcall': 'LogCallController.log',
+	
+	'post /initprov':'ProvinsiController.initprov',
+	'post /initkab':'KabupatenController.initkab',
+	'post /initkom':'KomoditasController.initkom',
+	'get /initinfoharga':'InfoHargaKKPController.initinfohargakkp',
+	'get /prov': 'ProvinsiController.find',
+	'get /kab': 'KabupatenController.find',
+	'get /kom': 'KomoditasController.find',
+	'get /infoharga' : 'InfoHargaKKPController.find',
+	'get /formImage':'Uploadimageapi.formImage',
+	'post /uploadImage':'Uploadimageapi.uploadImage'
 };

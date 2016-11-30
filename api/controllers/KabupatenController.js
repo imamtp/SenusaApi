@@ -9,19 +9,19 @@ var Q = require('q');
 
 var KabupatenController = {
 	find: function(req, res){
-		kd_prov = req.param('kode_provinsi');
+		prov = req.param('prov');
 		
-		queryKabupaten = Kabupaten.find({kode_provinsi:kd_prov});
-		queryKabupaten.sort('nama_kabupaten ASC');
-		if(kd_prov == 'all' || kd_prov === undefined){
+		queryKabupaten = Kabupaten.find({upline:prov});
+		queryKabupaten.sort('name ASC');
+		if(prov == 'all' || prov === undefined){
 			queryKabupaten = Kabupaten.find()
-			queryKabupaten.sort('kode_provinsi ASC')
+			queryKabupaten.sort('upline ASC')
 		}
 		queryKabupaten.exec(function(err, kab){
 			if(err || kab===undefined){
-				res.json('500', {success:false, message:'Data is empty!', errors:err.message});
+				res.json('500', {success:false, message:'Data tidak ditemukan!'});
 			}else{
-				res.json('200', {success:true, message:'Get Kabupaten Successfully!', results:kab});
+				res.json('200', {success:true, kab});
 			}
 		});
 	},
@@ -46,9 +46,9 @@ var KabupatenController = {
 						var promises_2 = []
 						kabupaten.forEach(function(kab){
 							promises_2.push(Kabupaten.create({
-								kode_kabupaten: kab[0],
-								nama_kabupaten: kab[1],
-								kode_provinsi: kab[2]
+								id: kab[0],
+								name: kab[1],
+								upline: kab[2]
 							}));
 						})
 						Q.all(promises_2)

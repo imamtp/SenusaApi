@@ -9,12 +9,12 @@ var ProvinsiController = {
 	find: function(req, res){
 		var queryProvinsi = Provinsi.find();
 		queryProvinsi.limit(34);
-		queryProvinsi.sort('nama_provinsi ASC');
+		queryProvinsi.sort('name ASC');
 		queryProvinsi.then(function(prov){
 			if(prov===undefined){
-				res.json('500', {success:false, message:'Empty Data!'});
+				res.json('500', {success:false, message:'Data tidak ditemukan'});
 			}else{
-				res.json('200', {success:true, message:'Get Provinsi Successfully!', results:prov})
+				res.json('200', {success:true, prov})
 			}
 		});
 	},
@@ -32,8 +32,8 @@ var ProvinsiController = {
 		var promises=[];
 		provinsi.forEach(function(prov){
 			promises.push(Provinsi.create({
-				kode_provinsi: prov[0],
-				nama_provinsi: prov[1]
+				id: prov[0],
+				name: prov[1]
 			}));
 		})
 		Q.allSettled(promises)

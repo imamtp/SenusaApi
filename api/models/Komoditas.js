@@ -8,13 +8,11 @@
 module.exports = {
 
   attributes: {
-  	kode_komoditas	: {type:'string'},
-  	nama_komoditas	: {type:'string'}
+  	name	: {type:'string'}
   },
   save: function(inputs, cb){
   	Komoditas.create({
-  		kode_komoditas: inputs.kode_komoditas,
-  		nama_komoditas: inputs.nama_komoditas
+  		name: inputs.name
   	})
   	.exec(cb);
   }

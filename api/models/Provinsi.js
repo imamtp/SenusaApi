@@ -7,16 +7,15 @@
 
 module.exports = {
 
-  attributes: {
-  	kode_provinsi	: {type:'integer'},
-  	nama_provinsi	: {type:'string'}
-  },
-  save:function(inputs, cb){
-  	Provinsi.create({
-  		kode_provinsi: inputs.kode_provinsi,
-  		nama_provinsi: inputs.nama_provinsi
-  	})
-  	.exec(cb);
-  }
+	attributes: {
+		name: {type:'string', required:true},
+		downline: {collection:'kabupaten', via:'upline'}
+	},
+	save:function(inputs, cb){
+		Provinsi.create({
+			name: inputs.name
+		})
+		.exec(cb);
+	}
 };
 

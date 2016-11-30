@@ -6,41 +6,36 @@
  */
 
 module.exports = {
-
-  attributes: {
-   name: { type: 'string' },
-   password: { type: 'string' },
-   phone: { type: 'string' },
-   address: { type: 'string' },
-   email: { type: 'string' }
- },
- signup: function (inputs, cb) {
-   // Create a user
-   User.create({
-     name: inputs.name,
-     phone: inputs.phone,
-     password: inputs.password,
-     address: inputs.address,
-     email: inputs.email
-   })
-   .exec(cb);
- },
- attemptLogin: function (inputs, cb) {
-   //user Check
-  //  User.findOne({
-  //    mobileNumber: inputs.mobileNumber,
-  //    password: inputs.password
-  //  })
-  //  .exec(cb);
-
-  //  User.query({
-  //     text: 'SELECT mobileNumber FROM user WHERE user.mobileNumber = $1 and user.password = $2',
-  //     values: [ inputs.mobileNumber , inputs.password]
-  //   }, function(err, results) {
-  //   if (err) return res.serverError(err);
-  //   return res.ok(results.rows);
-  // });
-
- }
-
+	attributes: {
+		name: { type:'string', required:true},
+		phone: { type:'string', unique:true, required:true},
+		password: { type:'string', required:true},
+		address: { type:'string' },
+		email: { type:'string' },
+		products: {collection:'produk', via:'owner'},
+		signinlogs: {collection:'logsignin', via:'user'},
+		calllogs: {collection:'logcall', via:'caller'}
+	},
+	validationMessages: {
+		name: {
+			required: 'Nama tidak boleh kosong'
+		},
+		phone: {
+			required: 'No HP tidak boleh kosong',
+			unique: 'No HP sudah terdaftar'
+		},
+		password: {
+			required: 'Password tidak boleh kosong'
+		}
+	},
+	signup: function (inputs, cb) {
+		User.create({
+			name: inputs.name,
+			phone: inputs.phone,
+			password: inputs.password,
+			address: inputs.address,
+			email: inputs.email
+		})
+		.exec(cb);
+	}
 };
