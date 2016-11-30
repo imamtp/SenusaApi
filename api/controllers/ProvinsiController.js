@@ -9,7 +9,7 @@ var ProvinsiController = {
 	find: function(req, res){
 		var queryProvinsi = Provinsi.find();
 		queryProvinsi.limit(34);
-		queryProvinsi.sort('nama_provinsi ASC');
+		queryProvinsi.sort('name ASC');
 		queryProvinsi.then(function(prov){
 			if(prov===undefined){
 				res.json('500', {success:false, message:'Empty Data!'});
