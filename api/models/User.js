@@ -13,7 +13,8 @@ module.exports = {
 		address: { type:'string' },
 		email: { type:'string' },
 		products: {collection:'produk', via:'owner'},
-		signinlogs: {collection:'logsignin', via:'user'}
+		signinlogs: {collection:'logsignin', via:'user'},
+		calllogs: {collection:'logcall', via:'caller'}
 	},
 	validationMessages: {
 		name: {
